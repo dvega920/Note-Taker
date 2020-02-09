@@ -1,0 +1,15 @@
+{
+    "name": "Note Taker App",
+    "short_name": "Note Taker App",
+    "icons": [
+        {
+            "src": "assets/images/pencil-alt-solid_2x.png",
+            "sizes": "320x320",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "start_url": "/",
+    "display": "standalone"
+}
