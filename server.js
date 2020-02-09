@@ -1,24 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
+const express = require("express");
+const apiRoutes = require("./routes/apiRoutes");
+const htmlRoutes = require("./routes/htmlRoutes");
+
+// Initialize the app and create a port
 const app = express();
-const mysql = require('mysql');
+const PORT = process.env.PORT || 3000;
 
-const PORT = process.env.PORT || 8080;
+// Set up body parsing, static, and route middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use("/api", apiRoutes);
+app.use("/", htmlRoutes);
 
-app.get("/notes", (request, response) => {
-    response.sendFile(path.join(__dirname, "..", "notes.html"));
-    console.log("Your Notes!");
-
-})
-app.get("*", (request, response) => {
-    response.sendFile(path.join(__dirname, "..", "index.html"));
-    console.log("Your Index!");
-
-})
-
-
-
-app.listen(PORT, () => {
-    console.log(`Server is listening on PORT ${PORT}`);
-});
+// Start the server on the port
+app.listen(PORT, () => console.log(`Listening on PORT: ${PORT}`));
